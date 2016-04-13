@@ -86,3 +86,39 @@ public class UserController {
 
 ####FailResult 
 * ```FailResult``` is used to catch the failure within the service method call which is called by ```ServiceCaller```
+
+###Service App
+```java
+@Service("UserService")
+public class UserService{
+
+	@Autowired
+	private UserRepository userRepository;
+	
+	@ServiceFunction
+	public void insert(User user){
+		userRepository.insert(user);
+	}
+	
+	@ServiceFunction
+	public void save(User user){
+		userRepository.save(user);
+	}
+	
+	@ServiceFunction
+	public void delete(User user){
+		userRepository.delete(user);
+	}
+	
+	@ServiceFunction
+	public List<User> findAll(){
+		return userRepository.findAll();
+	}
+	
+	@ServiceFunction
+	public User findByUserId(String userId){
+		return userRepository.findByUserId(userId);
+	}
+	
+}
+```
