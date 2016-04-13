@@ -108,3 +108,8 @@ public class UserService{
 ```
 ####@Service
 * use ```com.lovi.puppy.annotation.Service```
+* mark class as a service
+
+####@ServiceFunction
+* use ```com.lovi.puppy.annotation.ServiceFunction```
+* mark method as a service method
