@@ -156,7 +156,7 @@ public class UserService {
 
 ####puppy-io-angular.js
 * this contain a angular module which provides easy way to listen UIService calls
-```javascript
+```html
 <body ng-app="myApp">
 	<h1>User Manager App</h1>
 	<ul>
@@ -164,13 +164,14 @@ public class UserService {
 			{{user.userId}} | {{user.name}}
 		</li>
 	</ul>
-	<script type="text/javascript">
-		var app = angular.module("myApp", ['puppy-io']);
-	   		
-		app.config(function(WebServerProvider){
-	   		WebServerProvider.config('user-mgr',81);
-	   	});
-	</script>
-			
+	....
 </body>
+```
+```javascript
+var app = angular.module("myApp", ['puppy-io']);
+	   		
+app.config(function(WebServerProvider){
+	WebServerProvider.config('user-mgr',81);
+});
+....
 ```
