@@ -182,9 +182,9 @@ app.config(function(WebServerProvider){
 
 ####puppy-io.js
 ```javascript
-var sl = new ServiceListener(appName, port);
-sl.onopen(function() {
-	sl.listen(listenerAddress, function(error, message) {
+var serviceListener = new ServiceListener(appName, port);
+serviceListener.onopen(function() {
+	serviceListener.listen(listenerAddress, function(error, message) {
 	
 	});
 });
