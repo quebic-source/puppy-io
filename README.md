@@ -14,7 +14,6 @@ puppy-io provides easy way to develop reactive microservice applications on the 
  * Build the application using **mvn package**
  * Run the application using **java -jar target/use.jar**
 
-#How to use puppy-io
 ##Starting the application
 ```java
 @SpringBootApplication
