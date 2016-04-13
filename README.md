@@ -29,7 +29,7 @@ public class App
 * ```PuppyApp.run(int webAppPort)```
 * ```PuppyApp.runWebApp()``` run only the web application
 * ```PuppyApp.runServiceApp()``` run only the service application
-* sample application is based on spring-boot.you also can use puppy-io without spring-boot
+* Sample application is based on spring-boot.you also can use puppy-io without spring-boot
 
 ##Web App
 ```java
@@ -61,7 +61,7 @@ public class UserController {
 }
 ```
 ####@Controller
-* use ```com.lovi.puppy.annotation.Controller```
+* Use ```com.lovi.puppy.annotation.Controller```
 * Implementation of the controllers are similar to the spring-mvc but remember internal architecture is totally different from spring-mvc
 
 ####@RequestMapping
@@ -107,11 +107,11 @@ public class UserService{
 }
 ```
 ####@Service
-* use ```com.lovi.puppy.annotation.Service```
-* mark class as a service
+* Use ```com.lovi.puppy.annotation.Service```
+* Class is marked as a service by using ```@Service```
 
 ####@ServiceFunction
 * use ```com.lovi.puppy.annotation.ServiceFunction```
-* mark method as a service method
+* Method is marked as a service method by using ```@ServiceFunction```
 
 ##UI Service
