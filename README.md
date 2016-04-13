@@ -1,5 +1,6 @@
 # puppy-io
-puppy-io provides easy way to develop reactive microservice applications on the jvm.
+puppy-io provides easy way to develop reactive microservice applications on the jvm
+
 ![puppy-io](https://github.com/loviworld/puppy-io/blob/master/puppy-io.png)
 
 ### Prerequisities
