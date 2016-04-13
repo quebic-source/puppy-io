@@ -33,3 +33,31 @@ public class App
 * sample application is based on spring-boot.if you want you can use puppy-io without spring-boot
 
 ###Web App
+```java
+@Controller
+@RequestMapping("/users")
+public class UserController {
+
+	@Autowired
+	private ServiceCaller serviceCaller;
+	
+	@ResponseBody
+	@RequestMapping(produce="application/json")
+	public void findAll(HttpResponseResult responseResult) throws ServiceCallerException{
+		
+		Result<List<User>> result = Result.create();
+		FailResult failResult = FailResult.create();
+		
+		serviceCaller.call("UserService.findAll", result);
+		
+		result.process(r->{
+			responseResult.complete(new ResponseMessage(1, r));
+		}, failResult);
+		
+		failResult.setHandler(fail->{
+			responseResult.complete(new ResponseMessage(-1, fail.getMessage()),500);
+		});
+	}
+	.......
+}
+```
