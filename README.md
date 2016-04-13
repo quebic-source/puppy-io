@@ -78,4 +78,4 @@ public class UserController {
 ####ServiceCaller
 * ServiceCaller is used to call service method
 * ```ServiceCaller.call(String serviceMethod,Object... inputParameters)```
-* ```ServiceCaller.call(String serviceMethod,Result<U> result,Object... inputParameters)```. if your service method has a return value, get the return value by using ```Result```. 
+* ```ServiceCaller.call(String serviceMethod,Result<U> result,Object... inputParameters)```. if your service method has a return value, get the return value by using ```Result``` 
