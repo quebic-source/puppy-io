@@ -138,7 +138,6 @@ public class UserService {
 }
 ```
 * UI Services are used to make call from server side to clients side
-* UI Services publish data to connected sockjs clients
 
 ####@UIService
 * Use ```com.lovi.puppy.annotation.UIService```
@@ -152,4 +151,5 @@ public class UserService {
 * delay = time interval in seconds
 
 ####UICaller
-* UICaller publish data to connected sockjs clients
+* ```UICaller``` publish data to connected sockjs clients
+* ```UICaller.call(String listenerAddress,Object message)```
