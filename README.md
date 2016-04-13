@@ -181,4 +181,12 @@ app.config(function(WebServerProvider){
 * 'puppy-io' module contain ```ui``` and ```ui-repeat``` directives which provides easy way to listen UIService calls
 
 ####puppy-io.js
+```javascript
+var sl = new ServiceListener(WebServer.configuration.appName, WebServer.configuration.port);
+sl.onopen(function() {
+	sl.listen(listenerAddress, function(error, message) {
+		//do something     
+        });
+});
+```
 * [puppy-io.js](https://github.com/loviworld/puppy-io)
