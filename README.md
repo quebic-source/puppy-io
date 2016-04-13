@@ -202,4 +202,4 @@ serviceListener.onopen(function() {
 * [Linkedin](https://lk.linkedin.com/in/tharanga-thennakoon-036b2083)
 
 ##License
-This project is licensed under the MIT License
+This project is licensed under the Apache Licensed V2
