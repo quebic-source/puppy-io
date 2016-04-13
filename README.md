@@ -10,7 +10,7 @@ puppy-io provides easy way to develop reactive microservice applications on the 
  * Install puppy-io dependency using **mvn install**
  
 ### Sample application
- * Download the [user-mgr](https://github.com/loviworld/puppy-io) application from GitHub
+ * Download the [user-manager](https://github.com/loviworld/puppy-io) application from GitHub
  * Build the application using **mvn package**
  * Run the application using **java -jar target/use.jar**
 
