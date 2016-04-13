@@ -198,4 +198,4 @@ serviceListener.onopen(function() {
 * Hazelcast
 
 ###Authors
-* Tharanga Thennakoon - [tharanga](https://lk.linkedin.com/in/tharanga-thennakoon-036b2083)
+* Tharanga Thennakoon - tharanganilupul@gmail.com [tharanga](https://lk.linkedin.com/in/tharanga-thennakoon-036b2083)
