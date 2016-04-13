@@ -159,8 +159,11 @@ public class UserService {
 ```html
 <body ng-app="myApp">
 	<h1>User Manager App</h1>
+	
+	<span ui="val in usersCount">Count {{val}}</span>
+	
 	<ul>
-		<li ui-repeat="user in users">
+		<li ui-repeat="user in findAllUsers">
 			{{user.userId}} | {{user.name}}
 		</li>
 	</ul>
@@ -173,5 +176,4 @@ var app = angular.module("myApp", ['puppy-io']);
 app.config(function(WebServerProvider){
 	WebServerProvider.config('user-mgr',81);
 });
-....
 ```
