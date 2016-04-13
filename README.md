@@ -153,3 +153,24 @@ public class UserService {
 ####UICaller
 * ```UICaller``` publish data to connected sockjs clients
 * ```UICaller.call(String listenerAddress,Object message)```
+
+####puppy-io-angular.js
+* this contain a angular module which provides easy way to listen UIService calls
+```javascript
+<body ng-app="myApp">
+	<h1>User Manager App</h1>
+	<ul>
+		<li ui-repeat="user in users">
+			{{user.userId}} | {{user.name}}
+		</li>
+	</ul>
+	<script type="text/javascript">
+		var app = angular.module("myApp", ['puppy-io']);
+	   		
+		app.config(function(WebServerProvider){
+	   		WebServerProvider.config('user-mgr',81);
+	   	});
+	</script>
+			
+</body>
+```
