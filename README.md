@@ -29,6 +29,7 @@ public class App
 * ```PuppyApp.run()``` default port is 8080
 * ```PuppyApp.run(int webAppPort)```
 * ```PuppyApp.runWebApp()``` run only the web application
+* ```PuppyApp.runServiceApp()``` run only the service application
 * sample application is based on spring-boot.if you want you can use puppy-io without spring-boot
 
 
