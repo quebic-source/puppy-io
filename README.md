@@ -191,3 +191,8 @@ serviceListener.onopen(function() {
 });
 ```
 * [puppy-io.js](https://github.com/loviworld/puppy-io)
+
+##Technologies used in puppy-io
+* Vert.x
+* Spring Boot
+* Hazelcast
