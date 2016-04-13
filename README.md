@@ -154,7 +154,7 @@ public class UserService {
 * ```UICaller``` publish data to connected sockjs clients
 * ```UICaller.call(String listenerAddress,Object message)```
 
-####puppy-io-angular.js
+####[puppy-io-angular.js](https://github.com/loviworld/puppy-io)
 ```html
 <body ng-app="myApp">
 	<h1>User Manager App</h1>
@@ -178,3 +178,5 @@ app.config(function(WebServerProvider){
 ```
 * import 'puppy-io' module into your angular application
 * 'puppy-io' module contain ```ui``` and ```ui-repeat``` directives which provides easy way to listen UIService calls
+
+####[puppy-io.js](https://github.com/loviworld/puppy-io)
