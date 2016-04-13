@@ -89,7 +89,7 @@ public class UserController {
 
 ###Service App
 ```java
-@Service("UserService")
+@Service("userService")
 public class UserService{
 
 	@Autowired
