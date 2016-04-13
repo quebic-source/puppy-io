@@ -1,6 +1,6 @@
 # puppy-io
 puppy-io provides easy way to develop reactive microservice applications on the jvm.
-![puppy-io](https://www.google.lk/search?q=hd+wallpapers&espv=2&biw=1366&bih=599&site=webhp&tbm=isch&imgil=2Vgbkg5JzSIAoM%253A%253BvV2hSIyJej_roM%253Bhttps%25253A%25252F%25252Fwww.pexels.com%25252Fsearch%25252FHD%2525252520wallpaper%25252F&source=iu&pf=m&fir=2Vgbkg5JzSIAoM%253A%252CvV2hSIyJej_roM%252C_&usg=__MteSp-VxISX0R1brkWY_it57idI%3D&ved=0ahUKEwjd4P6F1YvMAhWJi5QKHeAyAAUQyjcILQ&ei=JEIOV92-F4mX0gTg5YAo#imgrc=2Vgbkg5JzSIAoM%3A)
+![puppy-io](https://github.com/loviworld/puppy-io/blob/master/puppy-io.png)
 
 ### Prerequisities
   * JDK 1.8.X
