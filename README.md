@@ -83,3 +83,6 @@ public class UserController {
 
 ####Result
 * ```Result``` is used to catch the return value of the service method which called by ```ServiceCaller```
+
+####FailResult 
+* ```FailResult``` is used to catch the failure within the service method call which called by ```ServiceCaller```
