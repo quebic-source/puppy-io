@@ -64,3 +64,9 @@ public class UserController {
 ####@Controller
 * If you use spring @Controller, puppy-io unable to identify the class as a controller.so use ```com.lovi.puppy.annotation.Controller```
 * Implementation of the controllers are similar to the spring-mvc but consider internal architecture is totally different than spring-mvc
+
+####@RequestMapping
+* value = The primary mapping expressed by this annotation
+* method = The HTTP request methods
+* consumes = The consumable media types of the mapped request
+* produce = The producible media types of the mapped request
