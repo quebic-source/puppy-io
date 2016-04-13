@@ -70,3 +70,7 @@ public class UserController {
 * method = The HTTP request methods
 * consumes = The consumable media types of the mapped request
 * produce = The producible media types of the mapped request
+
+####HttpResponseResult
+* ```HttpResponseResult.complete(Object value)``` set response value
+* ```HttpResponseResult.complete(Object value, int statusCode)``` set response value with statusCode
