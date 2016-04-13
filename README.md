@@ -62,7 +62,7 @@ public class UserController {
 ```
 ####@Controller
 * Use ```com.lovi.puppy.annotation.Controller```
-* Implementation of the controllers are similar to the spring-mvc but remember internal architecture is totally different from spring-mvc
+* Implementation of the controllers are similar to the spring-mvc but remember internal architecture of the puppy-io is totally different from spring-mvc
 
 ####@RequestMapping
 * value = The primary mapping expressed by this annotation
