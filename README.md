@@ -61,3 +61,6 @@ public class UserController {
 	.......
 }
 ```
+####@Controller
+* If you use spring @Controller, puppy-io unable to identify the class as a controller.so use ```com.lovi.puppy.annotation.Controller```
+* Implementation of the controllers are similar to the spring-mvc but consider internal architecture is totally different than spring-mvc
