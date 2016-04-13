@@ -93,7 +93,6 @@ public class UserController {
 
 ####Result
 * ```Result<T>``` is used to catch the return value of the service method which is called by ```ServiceCaller```
-* T - data type of the return value
 
 ####FailResult 
 * ```FailResult``` is used to catch the failure within the service method call which is called by ```ServiceCaller```
