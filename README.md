@@ -200,3 +200,6 @@ serviceListener.onopen(function() {
 ###Authors
 * Tharanga Thennakoon - tharanganilupul@gmail.com 
 * [Linkedin](https://lk.linkedin.com/in/tharanga-thennakoon-036b2083)
+
+##License
+This project is licensed under the MIT License
