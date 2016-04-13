@@ -131,7 +131,7 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@UIServiceFunction(listenerAddress="findAllUsers", delay=1)
+	@UIServiceFunction(listenerAddress="li_findAllUsers", delay=1)
 	public List<User> findAll(){
 		return userRepository.findAll();
 	}
@@ -162,7 +162,7 @@ public class UserService {
 	<span ui="val in usersCount">Count {{val}}</span>
 	
 	<ul>
-		<li ui-repeat="user in findAllUsers">
+		<li ui-repeat="user in li_findAllUsers">
 			{{user.userId}} | {{user.name}}
 		</li>
 	</ul>
