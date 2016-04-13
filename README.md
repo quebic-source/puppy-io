@@ -196,3 +196,6 @@ serviceListener.onopen(function() {
 * Vert.x
 * Spring Boot
 * Hazelcast
+
+###Authors
+* Tharanga Thennakoon - [tharanga]("https://lk.linkedin.com/in/tharanga-thennakoon-036b2083")
