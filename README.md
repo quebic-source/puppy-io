@@ -131,8 +131,8 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@UIServiceFunction(listenerAddress="users", delay=1)
-	public List<User> pushUsers(){
+	@UIServiceFunction(listenerAddress="findAllUsers", delay=1)
+	public List<User> findAll(){
 		return userRepository.findAll();
 	}
 }
