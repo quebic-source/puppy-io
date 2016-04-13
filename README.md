@@ -101,24 +101,9 @@ public class UserService{
 	}
 	
 	@ServiceFunction
-	public void save(User user){
-		userRepository.save(user);
-	}
-	
-	@ServiceFunction
-	public void delete(User user){
-		userRepository.delete(user);
-	}
-	
-	@ServiceFunction
 	public List<User> findAll(){
 		return userRepository.findAll();
 	}
-	
-	@ServiceFunction
-	public User findByUserId(String userId){
-		return userRepository.findByUserId(userId);
-	}
-	
+	....
 }
 ```
