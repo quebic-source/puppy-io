@@ -58,7 +58,7 @@ public class UserController {
 			responseResult.complete(new ResponseMessage(-1, fail.getMessage()),500);
 		});
 	}
-	.......
+	....
 }
 ```
 ####@Controller
