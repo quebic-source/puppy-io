@@ -11,7 +11,7 @@ puppy-io provides easy way to develop reactive microservice applications on the 
  
 ### Running sample application
  * Build the application using **mvn package**
- * Run teh application using **java -jar target\use.jar**
+ * Run teh application using **java -jar target/use.jar**
 
 
 
