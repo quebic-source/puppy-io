@@ -113,3 +113,5 @@ public class UserService{
 ####@ServiceFunction
 * use ```com.lovi.puppy.annotation.ServiceFunction```
 * mark method as a service method
+
+##UI Service
