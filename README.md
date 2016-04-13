@@ -137,3 +137,5 @@ public class UserService {
 	}
 }
 ```
+* UI Services are used to make call from server side to clients side
+* UI Services send data to connected sockjs clients.
