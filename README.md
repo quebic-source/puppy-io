@@ -159,7 +159,7 @@ public class UserService {
 <body ng-app="myApp">
 	<h1>User Manager App</h1>
 	
-	<span ui="val in usersCount">Count {{val}}</span>
+	<span ui="val in li_usersCount">Count {{val}}</span>
 	
 	<ul>
 		<li ui-repeat="user in li_findAllUsers">
