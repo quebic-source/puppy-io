@@ -120,7 +120,7 @@ public class UserService{
 * Class is marked as a service by using ```@Service```
 
 ####@ServiceFunction
-* use ```com.lovi.puppy.annotation.ServiceFunction```
+* Use ```com.lovi.puppy.annotation.ServiceFunction```
 * Method is marked as a service method by using ```@ServiceFunction```
 
 ##UI Service
@@ -139,3 +139,14 @@ public class UserService {
 ```
 * UI Services are used to make call from server side to clients side
 * UI Services send data to connected sockjs clients.
+
+####@UIService
+* Use ```com.lovi.puppy.annotation.UIService```
+* Class is marked as a ui service by using ```@UIService```
+
+####@UIServiceFunction
+* Use ```com.lovi.puppy.annotation.UIServiceFunction```
+* Method is marked as a ui service method by using ```@UIServiceFunction```
+* Fires every time a specified period of time has passed
+* listenerAddress = address of the listener
+* delay = time interval in seconds
