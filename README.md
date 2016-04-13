@@ -155,7 +155,8 @@ public class UserService {
 * ```UICaller.call(String listenerAddress,Object message)```
 
 ####puppy-io-angular.js
-* this contain a angular module which provides easy way to listen UIService calls
+* this js contain 'puppy-io' module
+* 'puppy-io' module contain ```ui``` and ```ui-repeat``` directive which provides easy way to listen UIService calls
 ```html
 <body ng-app="myApp">
 	<h1>User Manager App</h1>
