@@ -99,7 +99,7 @@ public class UserService{
 		userRepository.insert(user);
 	}
 	
-	@ServiceFunction
+	@ServiceFunction("_findAll")
 	public List<User> findAll(){
 		return userRepository.findAll();
 	}
