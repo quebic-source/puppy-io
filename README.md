@@ -115,3 +115,16 @@ public class UserService{
 * Method is marked as a service method by using ```@ServiceFunction```
 
 ##UI Service
+```java
+@UIService
+public class UserService {
+
+	@Autowired
+	private UserRepository userRepository;
+	
+	@UIServiceFunction(listenerAddress="users", delay=1)
+	public List<User> pushUsers(){
+		return userRepository.findAll();
+	}
+}
+```
