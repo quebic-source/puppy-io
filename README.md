@@ -15,7 +15,7 @@ puppy-io provides easy way to develop reactive microservice applications on the 
  * Run the application using **java -jar target/use.jar**
 
 #How to use puppy-io
-###Starting the application
+##Starting the application
 ```java
 @SpringBootApplication
 public class App 
@@ -32,7 +32,7 @@ public class App
 * ```PuppyApp.runServiceApp()``` run only the service application
 * sample application is based on spring-boot.you also can use puppy-io without spring-boot
 
-###Web App
+##Web App
 ```java
 @Controller
 @RequestMapping("/users")
@@ -87,7 +87,7 @@ public class UserController {
 ####FailResult 
 * ```FailResult``` is used to catch the failure within the service method call which is called by ```ServiceCaller```
 
-###Service App
+##Service App
 ```java
 @Service("userService")
 public class UserService{
