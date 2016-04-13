@@ -82,7 +82,7 @@ public class UserController {
 * ```ServiceCaller.call(String appName,String serviceMethod,Result<U> result,Object... inputParameters)```. if you want to call serivce method from a another application, you can call with the appName
 
 ####Result
-* ```Result``` is used to catch the return value of the service method which called by ```ServiceCaller```
+* ```Result``` is used to catch the return value of the service method which is called by ```ServiceCaller```
 
 ####FailResult 
-* ```FailResult``` is used to catch the failure within the service method call which called by ```ServiceCaller```
+* ```FailResult``` is used to catch the failure within the service method call which is called by ```ServiceCaller```
