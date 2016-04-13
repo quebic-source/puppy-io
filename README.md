@@ -91,8 +91,8 @@ public class UserController {
 * ```ServiceCaller.call(String serviceMethod, Result<U> result, Object... inputParameters)```. if your service method has a return value, get the return value by using ```Result```
 * ```ServiceCaller.call(String appName, String serviceMethod, Result<U> result, Object... inputParameters)```. if you want to call serivce method from a another application, you can call with the appName
 
-####Result<T>
-* ```Result``` is used to catch the return value of the service method which is called by ```ServiceCaller```
+####Result
+* ```Result<T>``` is used to catch the return value of the service method which is called by ```ServiceCaller```
 * T - data type of the return value
 
 ####FailResult 
