@@ -178,7 +178,7 @@ app.config(function(WebServerProvider){
 	WebServerProvider.config('user-mgr',81);
 });
 ```
-* [puppy-io-angular.js](https://github.com/loviworld/puppy-io)
+* [puppy-io-angular.js](https://github.com/loviworld/puppy-io-samples/blob/master/src/main/resources/web/static/js/puppy-io-angular.js)
 * import 'puppy-io' module into your angular application
 * 'puppy-io' module contain ```ui``` and ```ui-repeat``` directives which provides easy way to listen UIService calls
 
@@ -191,7 +191,7 @@ serviceListener.onopen(function() {
 	});
 });
 ```
-* [puppy-io.js](https://github.com/loviworld/puppy-io)
+* [puppy-io.js](https://github.com/loviworld/puppy-io-samples/blob/master/src/main/resources/web/static/js/puppy-io.js)
 
 ###Technologies used in puppy-io
 * Vert.x
