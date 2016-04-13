@@ -57,6 +57,15 @@ public class UserController {
 			responseResult.complete(new ResponseMessage(-1, fail.getMessage()),500);
 		});
 	}
+	
+	@ResponseBody
+	@RequestMapping(method=HttpMethod.POST,produce="application/json")
+	public void insert(@ModelAttribute User user,HttpResponseResult responseResult) throws ServiceCallerException{
+		
+		serviceCaller.call("UserService.insert", user);
+		responseResult.complete(new ResponseMessage(1, "do insert"),200);
+	
+	}
 	....
 }
 ```
