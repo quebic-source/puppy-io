@@ -199,4 +199,4 @@ serviceListener.onopen(function() {
 
 ###Authors
 * Tharanga Thennakoon - tharanganilupul@gmail.com 
-* linkedin - [tharanga](https://lk.linkedin.com/in/tharanga-thennakoon-036b2083)
+* [Linkedin](https://lk.linkedin.com/in/tharanga-thennakoon-036b2083)
