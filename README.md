@@ -3,7 +3,7 @@ puppy-io is a java framework.It provides easy way to develop reactive microservi
 
 ![puppy-io](https://github.com/loviworld/puppy-io/blob/master/puppy-io.png)
 
-![puppy-io how threading works](https://github.com/loviworld/puppy-io/blob/master/puppy-io.png)
+![puppy-io how threading works](https://github.com/loviworld/puppy-io/blob/master/puppy-io-t.png)
 
 ### Prerequisities
   * JDK 1.8.X
