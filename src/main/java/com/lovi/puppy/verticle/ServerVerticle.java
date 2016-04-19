@@ -34,7 +34,7 @@ import com.lovi.puppy.exceptions.RequestProcessingException;
 import com.lovi.puppy.exceptions.message.ErrorMessage;
 import com.lovi.puppy.future.HttpResponseResult;
 import com.lovi.puppy.future.handler.HttpResponseHandler;
-import com.lovi.puppy.web.WebSession;
+import com.lovi.puppy.web.Session;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.MultiMap;
@@ -42,7 +42,6 @@ import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
-import io.vertx.ext.web.Session;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CookieHandler;
 import io.vertx.ext.web.handler.SessionHandler;
@@ -431,11 +430,11 @@ public class ServerVerticle extends AbstractVerticle {
 					inputParms[paramterCount++] = httpResponseFuture;
 				}
 				
-				else if (paramaterType.equals(WebSession.class.getName())) {
+				else if (paramaterType.equals(Session.class.getName())) {
 					// check WebSession type parameter
-					Session session = routingContext.session();
-					WebSession webSession = new WebSession(session);
-					inputParms[paramterCount++] = webSession;
+					io.vertx.ext.web.Session session = routingContext.session();
+					Session customSession = new Session(session);
+					inputParms[paramterCount++] = customSession;
 				}
 				
 				else {

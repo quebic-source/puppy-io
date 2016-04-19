@@ -5,15 +5,13 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lovi.puppy.exceptions.message.ErrorMessage;
 
-import io.vertx.ext.web.Session;
+public class Session{
 
-public class WebSession{
-
-	private static final Logger logger = LoggerFactory.getLogger(WebSession.class);
+	private static final Logger logger = LoggerFactory.getLogger(Session.class);
 	
-	private Session session;
+	private io.vertx.ext.web.Session session;
 	
-	public WebSession(Session session) {
+	public Session(io.vertx.ext.web.Session session) {
 		this.session = session;
 	}
 	
