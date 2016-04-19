@@ -20,7 +20,6 @@ import org.springframework.expression.spel.SpelParserConfiguration;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lovi.puppy.annotation.Controller;
 import com.lovi.puppy.annotation.ModelAttribute;
@@ -29,13 +28,13 @@ import com.lovi.puppy.annotation.RequestHeader;
 import com.lovi.puppy.annotation.RequestMapping;
 import com.lovi.puppy.annotation.RequestParm;
 import com.lovi.puppy.annotation.ResponseBody;
+import com.lovi.puppy.context.AppConfig;
 import com.lovi.puppy.exceptions.InternalServerException;
 import com.lovi.puppy.exceptions.RequestProcessingException;
 import com.lovi.puppy.exceptions.message.ErrorMessage;
 import com.lovi.puppy.future.HttpResponseResult;
 import com.lovi.puppy.future.handler.HttpResponseHandler;
 import com.lovi.puppy.web.WebSession;
-
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.MultiMap;
@@ -64,9 +63,11 @@ public class ServerVerticle extends AbstractVerticle {
 	@Autowired
 	private ApplicationContext applicationContext;
 	
+	@Autowired
+	private AppConfig appConfig;
+	
 	private SessionHandler sessionHandler;
-	private Class<?> appClass;
-	private String appName;
+
 	private int port;
 
 	private String resourcesFolder = "src/main/resources/web";
@@ -74,11 +75,13 @@ public class ServerVerticle extends AbstractVerticle {
 	@Override
 	public void start(Future<Void> startFuture) throws Exception {
 		
+		
+		
 		Router router = Router.router(vertx);
 		router.route("/*").handler(BodyHandler.create());// this is for access json request body
 		
 		//static resources
-		router.route("/static/*").handler(StaticHandler.create(resourcesFolder + "/static").setCachingEnabled(false))
+		router.get("/" + appConfig.getAppName() +"/static/*").handler(StaticHandler.create(resourcesFolder + "/static").setCachingEnabled(false))
 		.failureHandler(failureHandler->{
 			prepareFailureResponse(failureHandler, 404, "unable to found - " + failureHandler.request().path());
 		});
@@ -86,14 +89,14 @@ public class ServerVerticle extends AbstractVerticle {
 		//templates
 		TemplateEngine engine = ThymeleafTemplateEngine.create();
 		TemplateHandler htmlHandler = TemplateHandler.create(engine,resourcesFolder + "/templates","text/html;charset=utf-8");
-		router.get("/template/*").handler(htmlHandler)
+		router.get("/" + appConfig.getAppName() + "/templates/*").handler(htmlHandler)
 		.failureHandler(failureHandler->{
 			prepareFailureResponse(failureHandler, 404, "unable to found - " + failureHandler.request().path());
 		});
 		
 		//ui - socket.js hander
 		SockJSHandler sockJSHandler = socketJSRegister();
-		router.route("/ui." + appName + "/*").handler(sockJSHandler);
+		router.route("/ui." + appConfig.getAppName() + "/*").handler(sockJSHandler);
 		
 		//cookie handler
 		router.route().handler(CookieHandler.create());
@@ -105,7 +108,8 @@ public class ServerVerticle extends AbstractVerticle {
 
 		scanner.addIncludeFilter(new AnnotationTypeFilter(Controller.class));
 
-		for (BeanDefinition bd : scanner.findCandidateComponents(appClass.getPackage().getName())) {
+		
+		for (BeanDefinition bd : scanner.findCandidateComponents(appConfig.getAppClass().getPackage().getName())) {
 			try {
 				Class<?> classController = Class.forName(bd.getBeanClassName());
 
@@ -135,7 +139,7 @@ public class ServerVerticle extends AbstractVerticle {
 						String consumes = requestMappingAnnotation.consumes();
 						String produce = requestMappingAnnotation.produce();
 						
-						//logger.info("web request mapping -> {}", requestUrl);
+						logger.info("web request mapping -> {}", requestUrl);
 
 						switch (requestMappingAnnotation.method()) {
 							case GET:
@@ -285,7 +289,7 @@ public class ServerVerticle extends AbstractVerticle {
 					@Override
 					public void handle(Object value, int statusCode) {
 						if(value instanceof String){
-							routingContext.reroute("/template/" + (String) value + ".html");
+							routingContext.reroute("/" + appConfig.getAppName() + "/templates/" + (String) value + ".html");
 						}else{
 							try {
 								throw new Exception("response body parse exception - " + "to redirect template put return type as String.or put @ResponseBody");
@@ -538,7 +542,7 @@ public class ServerVerticle extends AbstractVerticle {
 		SockJSHandler sockJSHandler = SockJSHandler.create(vertx);
 		BridgeOptions options = new BridgeOptions();
 		//ui.[appName].[method]
-		options.addOutboundPermitted(new PermittedOptions().setAddressRegex("ui."+appName+"..*"));
+		options.addOutboundPermitted(new PermittedOptions().setAddressRegex("ui." + appConfig.getAppName() + "..*"));
 		sockJSHandler.bridge(options, event -> {
 			if (event.type() == BridgeEventType.SOCKET_CREATED) {
 			}
@@ -552,16 +556,8 @@ public class ServerVerticle extends AbstractVerticle {
 		this.sessionHandler = sessionHandler;
 	}
 
-	public void setAppClass(Class<?> appClass) {
-		this.appClass = appClass;
-	}
-
 	private String getAppNameBaseUrl(){
-		return "/" + appName;
-	}
-
-	public void setAppName(String appName) {
-		this.appName = appName;
+		return "/" + appConfig.getAppName();
 	}
 
 	public int getPort() {

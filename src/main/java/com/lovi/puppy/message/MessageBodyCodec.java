@@ -23,6 +23,8 @@ public class MessageBodyCodec implements MessageCodec<MessageBody, MessageBody> 
 			byte[] bytes = output.toByteArray();
 			buffer.appendInt(bytes.length);
 			buffer.appendBytes(bytes);
+			
+			
 		} catch (Exception e) {
 			logger.error("encodeToWire {}",e.toString());
 		}
@@ -30,7 +32,6 @@ public class MessageBodyCodec implements MessageCodec<MessageBody, MessageBody> 
 
 	@Override
 	public MessageBody decodeFromWire(int position, Buffer buffer) {
-		
 		//message starting from this *position* of buffer
 		int _pos = position;
 		
@@ -50,6 +51,7 @@ public class MessageBodyCodec implements MessageCodec<MessageBody, MessageBody> 
 			logger.error("decodeFromWire {}",e.toString());
 		}
 		return messageBody;
+		
 	}
 
 	@Override

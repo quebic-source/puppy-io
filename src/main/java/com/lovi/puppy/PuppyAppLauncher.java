@@ -1,7 +1,6 @@
 package com.lovi.puppy;
 
 import java.io.PrintStream;
-
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
@@ -10,7 +9,6 @@ import io.vertx.ext.web.handler.SessionHandler;
 import io.vertx.ext.web.sstore.LocalSessionStore;
 import io.vertx.ext.web.sstore.SessionStore;
 import io.vertx.spi.cluster.hazelcast.HazelcastClusterManager;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
@@ -18,13 +16,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
-
 import com.lovi.puppy.context.AppConfig;
 import com.lovi.puppy.context.HazelCastContext;
 import com.lovi.puppy.message.MessageBody;
 import com.lovi.puppy.message.MessageBodyCodec;
-import com.lovi.puppy.message.ServiceCaller;
-import com.lovi.puppy.message.UICaller;
 import com.lovi.puppy.verticle.ServerVerticle;
 import com.lovi.puppy.verticle.ServiceVerticle;
 import com.lovi.puppy.verticle.UIServiceVerticle;
@@ -145,8 +140,6 @@ class PuppyAppLauncher{
 		SessionHandler sessionHandler = SessionHandler.create(store);
 		
 		ServerVerticle serverVerticle = context.getBean(ServerVerticle.class);
-		serverVerticle.setAppClass(appClass);
-    	serverVerticle.setAppName(appName);
     	serverVerticle.setPort(port);
     	serverVerticle.setSessionHandler(sessionHandler);
     	
@@ -155,8 +148,6 @@ class PuppyAppLauncher{
 	
 	private void startServiceApp(){
 		ServiceVerticle serviceVerticle = context.getBean(ServiceVerticle.class);
-		serviceVerticle.setAppClass(appClass);
-    	serviceVerticle.setAppName(appName);
         vertx.deployVerticle(serviceVerticle);
 	}
 	
@@ -206,14 +197,10 @@ class PuppyAppLauncher{
 			  vertx.eventBus().registerDefaultCodec(MessageBody.class, new MessageBodyCodec());
 			  
 			  AppConfig appConfig = context.getBean(AppConfig.class);
+			  appConfig.setVertx(vertx);
+			  appConfig.setAppClass(appClass);
 			  appConfig.setAppName(appName);
-			  
-			  ServiceCaller serviceCaller = context.getBean(ServiceCaller.class);
-			  serviceCaller.setVertx(vertx);
-			  
-			  UICaller uiCaller = context.getBean(UICaller.class);
-			  uiCaller.setVertx(vertx);
-			  
+			
 			  handler.handle(1);
 		  } else {
 			  logger.error("fail clusteredVertx");

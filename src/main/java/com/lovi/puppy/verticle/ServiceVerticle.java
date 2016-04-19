@@ -12,6 +12,7 @@ import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.stereotype.Component;
 import com.lovi.puppy.annotation.Service;
 import com.lovi.puppy.annotation.ServiceFunction;
+import com.lovi.puppy.context.AppConfig;
 import com.lovi.puppy.context.HazelCastContext;
 import com.lovi.puppy.exceptions.message.ErrorMessage;
 import com.lovi.puppy.message.MessageBody;
@@ -31,10 +32,9 @@ public class ServiceVerticle extends AbstractVerticle {
 	
 	@Autowired
 	private HazelCastContext hazelCastContext;
-
-	private Class<?> appClass;
-
-	private String appName;
+	
+	@Autowired
+	private AppConfig appConfig;
 
 	@Override
 	public void start(Future<Void> startFuture) throws Exception {
@@ -43,7 +43,7 @@ public class ServiceVerticle extends AbstractVerticle {
 		ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
 		scanner.addIncludeFilter(new AnnotationTypeFilter(Service.class));
 
-		for (BeanDefinition bd : scanner.findCandidateComponents(appClass.getPackage().getName())) {
+		for (BeanDefinition bd : scanner.findCandidateComponents(appConfig.getAppClass().getPackage().getName())) {
 
 			try {
 				Class<?> classService = Class.forName(bd.getBeanClassName());
@@ -72,7 +72,7 @@ public class ServiceVerticle extends AbstractVerticle {
 						if (serviceFunctionName.equals(""))
 							serviceFunctionName = method.getName();
 
-						String serviceAddress = appName + "." + serviceName + "." + serviceFunctionName;
+						String serviceAddress = appConfig.getAppName() + "." + serviceName + "." + serviceFunctionName;
 
 						if(registerService(serviceAddress))
 							deployService(method, serviceAddress, serviceObject);
@@ -144,14 +144,6 @@ public class ServiceVerticle extends AbstractVerticle {
 
 	@Override
 	public void stop(Future<Void> stopFuture) throws Exception {
-	}
-
-	public void setAppClass(Class<?> appClass) {
-		this.appClass = appClass;
-	}
-
-	public void setAppName(String appName) {
-		this.appName = appName;
 	}
 
 }

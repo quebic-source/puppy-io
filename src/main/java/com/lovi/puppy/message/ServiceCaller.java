@@ -2,24 +2,15 @@ package com.lovi.puppy.message;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.lovi.puppy.context.AppConfig;
 import com.lovi.puppy.exceptions.ServiceCallerException;
 import com.lovi.puppy.exceptions.message.ErrorMessage;
-
-import io.vertx.core.Vertx;
 
 @Component
 final public class ServiceCaller {
 	
 	@Autowired
 	private AppConfig appConfig;
-	
-	private Vertx vertx;
-	
-	public void setVertx(Vertx vertx) {
-		this.vertx = vertx;
-	}
 	
 	/**
 	 * U - Return Type
@@ -34,7 +25,7 @@ final public class ServiceCaller {
 			MessageBody messageBody = new MessageBody();
 			messageBody.setStatus(1);
 			messageBody.setValues(inputParameters);
-			vertx.eventBus().<MessageBody>send(address, messageBody, result.getHandler());
+			appConfig.getVertx().eventBus().<MessageBody>send(address, messageBody, result.getHandler());
 			
 		} catch (Exception e) {
 			throw new ServiceCallerException(ErrorMessage.SERVICE_CALL_UNABLE_TO_PROCESS.getMessage());
@@ -56,7 +47,7 @@ final public class ServiceCaller {
 			MessageBody messageBody = new MessageBody();
 			messageBody.setStatus(1);
 			messageBody.setValues(inputParameters);
-			vertx.eventBus().<MessageBody>send(address, messageBody, result.getHandler());
+			appConfig.getVertx().eventBus().<MessageBody>send(address, messageBody, result.getHandler());
 			
 		} catch (Exception e) {
 			throw new ServiceCallerException(ErrorMessage.SERVICE_CALL_UNABLE_TO_PROCESS.getMessage());
@@ -75,7 +66,7 @@ final public class ServiceCaller {
 			MessageBody messageBody = new MessageBody();
 			messageBody.setStatus(1);
 			messageBody.setValues(inputParameters);
-			vertx.eventBus().send(address, messageBody);
+			appConfig.getVertx().eventBus().send(address, messageBody);
 			
 		} catch (Exception e) {
 			throw new ServiceCallerException(ErrorMessage.SERVICE_CALL_UNABLE_TO_PROCESS.getMessage());
@@ -95,7 +86,7 @@ final public class ServiceCaller {
 			MessageBody messageBody = new MessageBody();
 			messageBody.setStatus(1);
 			messageBody.setValues(inputParameters);
-			vertx.eventBus().send(address, messageBody);
+			appConfig.getVertx().eventBus().send(address, messageBody);
 			
 		} catch (Exception e) {
 			throw new ServiceCallerException(ErrorMessage.SERVICE_CALL_UNABLE_TO_PROCESS.getMessage());
