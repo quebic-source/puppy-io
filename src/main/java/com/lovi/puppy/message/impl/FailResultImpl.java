@@ -1,4 +1,4 @@
-package com.lovi.puppy.message.impl.error;
+package com.lovi.puppy.message.impl;
 
 import com.lovi.puppy.message.FailResult;
 import io.vertx.core.Future;

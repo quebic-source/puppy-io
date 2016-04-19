@@ -1,16 +1,8 @@
 package com.lovi.puppy.message;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import com.lovi.puppy.context.AppConfig;
 import com.lovi.puppy.exceptions.ServiceCallerException;
-import com.lovi.puppy.exceptions.message.ErrorMessage;
 
-@Component
-final public class ServiceCaller {
-	
-	@Autowired
-	private AppConfig appConfig;
+public interface ServiceCaller {
 	
 	/**
 	 * U - Return Type
@@ -19,19 +11,7 @@ final public class ServiceCaller {
 	 * @param inputParameters Object...
 	 * @throws ServiceCallerException
 	 */
-	public <U>  void call(String serviceMethod,Result<U> result,Object... inputParameters) throws ServiceCallerException{
-		try {
-			String address = appConfig.getAppName() + "." + serviceMethod;
-			MessageBody messageBody = new MessageBody();
-			messageBody.setStatus(1);
-			messageBody.setValues(inputParameters);
-			appConfig.getVertx().eventBus().<MessageBody>send(address, messageBody, result.getHandler());
-			
-		} catch (Exception e) {
-			throw new ServiceCallerException(ErrorMessage.SERVICE_CALL_UNABLE_TO_PROCESS.getMessage());
-		}
-		
-	}
+	<U>  void call(String serviceMethod,Result<U> result,Object... inputParameters) throws ServiceCallerException;
 	
 	/**
 	 * U - Return Type
@@ -41,38 +21,14 @@ final public class ServiceCaller {
 	 * @param inputParameters Object...
 	 * @throws ServiceCallerException
 	 */
-	public <U>  void call(String appName,String serviceMethod,Result<U> result,Object... inputParameters) throws ServiceCallerException{
-		try {
-			String address = appName + "." + serviceMethod;
-			MessageBody messageBody = new MessageBody();
-			messageBody.setStatus(1);
-			messageBody.setValues(inputParameters);
-			appConfig.getVertx().eventBus().<MessageBody>send(address, messageBody, result.getHandler());
-			
-		} catch (Exception e) {
-			throw new ServiceCallerException(ErrorMessage.SERVICE_CALL_UNABLE_TO_PROCESS.getMessage());
-		}
-		
-	}
+	<U>  void call(String appName,String serviceMethod,Result<U> result,Object... inputParameters) throws ServiceCallerException;
 	
 	/**
 	 * @param serviceMethod
 	 * @param inputParameters Object...
 	 * @throws ServiceCallerException
 	 */
-	public void call(String serviceMethod,Object... inputParameters) throws ServiceCallerException{
-		try {
-			String address = appConfig.getAppName() + "." + serviceMethod;
-			MessageBody messageBody = new MessageBody();
-			messageBody.setStatus(1);
-			messageBody.setValues(inputParameters);
-			appConfig.getVertx().eventBus().send(address, messageBody);
-			
-		} catch (Exception e) {
-			throw new ServiceCallerException(ErrorMessage.SERVICE_CALL_UNABLE_TO_PROCESS.getMessage());
-		}
-		
-	}
+	void call(String serviceMethod,Object... inputParameters) throws ServiceCallerException;
 	
 	/**
 	 * @param appName
@@ -80,18 +36,6 @@ final public class ServiceCaller {
 	 * @param inputParameters Object...
 	 * @throws ServiceCallerException
 	 */
-	public void call(String appName,String serviceMethod,Object... inputParameters) throws ServiceCallerException{
-		try {
-			String address = appName + "." + serviceMethod;
-			MessageBody messageBody = new MessageBody();
-			messageBody.setStatus(1);
-			messageBody.setValues(inputParameters);
-			appConfig.getVertx().eventBus().send(address, messageBody);
-			
-		} catch (Exception e) {
-			throw new ServiceCallerException(ErrorMessage.SERVICE_CALL_UNABLE_TO_PROCESS.getMessage());
-		}
-		
-	}
+	void call(String appName,String serviceMethod,Object... inputParameters) throws ServiceCallerException;
 
 }
