@@ -38,6 +38,7 @@ import com.lovi.puppy.web.Session;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.MultiMap;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
@@ -74,8 +75,6 @@ public class ServerVerticle extends AbstractVerticle {
 	@Override
 	public void start(Future<Void> startFuture) throws Exception {
 		
-		
-		
 		Router router = Router.router(vertx);
 		router.route("/*").handler(BodyHandler.create());// this is for access json request body
 		
@@ -90,7 +89,7 @@ public class ServerVerticle extends AbstractVerticle {
 		TemplateHandler htmlHandler = TemplateHandler.create(engine,resourcesFolder + "/templates","text/html;charset=utf-8");
 		router.get("/" + appConfig.getAppName() + "/templates/*").handler(htmlHandler)
 		.failureHandler(failureHandler->{
-			prepareFailureResponse(failureHandler, 404, "unable to found - " + failureHandler.request().path());
+			prepareFailureResponse(failureHandler, 404, "unable to found template - " + failureHandler.request().path());
 		});
 		
 		//ui - socket.js hander
@@ -205,7 +204,7 @@ public class ServerVerticle extends AbstractVerticle {
 		
 		//404 handler
 		router.route().handler(failureRoutingContext->{
-			prepareFailureResponse(failureRoutingContext, 404, "Resource Not Found");
+			prepareFailureResponse(failureRoutingContext, 404, "unable to found requested path [ " + failureRoutingContext.request().path() + " ] method [ " + failureRoutingContext.request().method() + " ]");
 		});
 		
 		// vertx.createHttpServer().requestHandler(router::accept).listen(8080);
@@ -288,10 +287,23 @@ public class ServerVerticle extends AbstractVerticle {
 					@Override
 					public void handle(Object value, int statusCode) {
 						if(value instanceof String){
-							routingContext.reroute("/" + appConfig.getAppName() + "/templates/" + (String) value + ".html");
+							
+							String path = (String) value;
+							
+							//check for redirect to another route
+							String pattern = "/\\.*";
+					    	Pattern r = Pattern.compile(pattern);
+					    	Matcher m = r.matcher(path);
+							if (m.find()) {
+								path = path.substring(m.end());
+								routingContext.reroute(HttpMethod.GET, "/" + appConfig.getAppName() + path);
+							}else{
+								routingContext.reroute(HttpMethod.GET, "/" + appConfig.getAppName() + "/templates/" + (String) value + ".html");
+							}
+							
 						}else{
 							try {
-								throw new Exception("response body parse exception - " + "to redirect template put return type as String.or put @ResponseBody");
+								throw new Exception(ErrorMessage.UNABLE_TO_REDIRECT_RESPONSE_TO_TEMPLATE.getMessage());
 							} catch (Exception e) {
 								prepareFailureResponse(routingContext,400,e.getMessage());
 							}

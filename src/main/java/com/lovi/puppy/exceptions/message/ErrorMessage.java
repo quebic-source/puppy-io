@@ -22,7 +22,9 @@ public enum ErrorMessage {
 	UI_SERVICE_FUNCTION_UNABLE_TO_PROCESS("unable to process ui service function"),
 	SESSION_OBJECT_UNABLE_TO_PARSE("unable to parse object into session. session key -> "), 
 	SERVICE_CALL_UNABLE_TO_FOUND_DEFAULT_CONSTRUCTOR("unable to found default constructor of POJO"),
-	SERVICE_CALL_UNABLE_TO_ACCESS_SERVICE_FUNCTION("unable to access service function");
+	SERVICE_CALL_UNABLE_TO_ACCESS_SERVICE_FUNCTION("unable to access service function"), 
+	UNABLE_TO_REDIRECT_RESPONSE_TO_TEMPLATE("unable to redirect response to template");
+	
 	String errorMessage;
 	private ErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
