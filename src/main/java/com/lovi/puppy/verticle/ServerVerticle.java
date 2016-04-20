@@ -85,10 +85,7 @@ public class ServerVerticle extends AbstractVerticle {
 		router.route("/*").handler(BodyHandler.create());// this is for access json request body
 		
 		//static resources
-		router.get("/" + appConfig.getAppName() +"/static/*").handler(StaticHandler.create(resourcesFolder + "/static").setCachingEnabled(false))
-		.failureHandler(failureHandler->{
-			prepareFailureResponse(failureHandler, 404, "unable to found - " + failureHandler.request().path());
-		});
+		router.get("/" + appConfig.getAppName() +"/static/*").handler(StaticHandler.create(resourcesFolder + "/static").setCachingEnabled(false));
 		
 		//templates
 		TemplateEngine engine = ThymeleafTemplateEngine.create();
