@@ -122,7 +122,6 @@ public class ServerVerticle extends AbstractVerticle {
 				if (requestMappingClassAnnonation != null) {
 					RequestMapping requestMappingAnnotation = (RequestMapping) requestMappingClassAnnonation;
 					controllerBaseUrl = requestMappingAnnotation.value();
-					
 				}
 				
 				Object controllerObject = applicationContext.getBean(classController);
