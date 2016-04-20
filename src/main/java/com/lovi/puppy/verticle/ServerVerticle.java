@@ -6,6 +6,7 @@ import java.lang.reflect.Parameter;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.expression.spel.SpelParserConfiguration;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lovi.puppy.annotation.Controller;
 import com.lovi.puppy.annotation.ModelAttribute;
@@ -35,7 +37,9 @@ import com.lovi.puppy.exceptions.message.ErrorMessage;
 import com.lovi.puppy.future.HttpResponseResult;
 import com.lovi.puppy.future.handler.HttpResponseHandler;
 import com.lovi.puppy.web.Session;
+import com.lovi.puppy.web.ViewAttribute;
 import com.lovi.puppy.web.impl.SessionImpl;
+import com.lovi.puppy.web.impl.ViewAttributeImpl;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
@@ -139,7 +143,7 @@ public class ServerVerticle extends AbstractVerticle {
 						String consumes = requestMappingAnnotation.consumes();
 						String produce = requestMappingAnnotation.produce();
 						
-						logger.info("web request mapping -> {}", requestUrl);
+						logger.info("web request mapping -> {} | {}", requestUrl, requestMappingAnnotation.method());
 
 						switch (requestMappingAnnotation.method()) {
 							case GET:
@@ -445,10 +449,16 @@ public class ServerVerticle extends AbstractVerticle {
 				}
 				
 				else if (paramaterType.equals(Session.class.getName())) {
-					// check WebSession type parameter
+					// check Session type parameter
 					io.vertx.ext.web.Session session = routingContext.session();
 					Session customSession = new SessionImpl(session);
 					inputParms[paramterCount++] = customSession;
+				}
+				
+				else if (paramaterType.equals(ViewAttribute.class.getName())) {
+					// check ViewAttribute type parameter
+					ViewAttribute viewAttribute = new ViewAttributeImpl(routingContext);
+					inputParms[paramterCount++] = viewAttribute;
 				}
 				
 				else {

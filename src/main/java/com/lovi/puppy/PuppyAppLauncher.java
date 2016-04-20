@@ -153,7 +153,6 @@ class PuppyAppLauncher{
 	
 	private void startUIService(){
 		UIServiceVerticle uiServiceVerticle = context.getBean(UIServiceVerticle.class);
-		uiServiceVerticle.setAppClass(appClass);
         vertx.deployVerticle(uiServiceVerticle);
 	}
 	

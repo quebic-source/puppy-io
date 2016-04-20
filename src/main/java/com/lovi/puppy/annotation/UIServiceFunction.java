@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UIServiceFunction {
-	String listenerAddress() default "";
+	String value() default "";
 	int delay();//delay - minute
 }

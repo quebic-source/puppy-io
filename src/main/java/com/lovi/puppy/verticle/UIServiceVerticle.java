@@ -38,8 +38,6 @@ public class UIServiceVerticle extends AbstractVerticle{
 	@Autowired
 	private UICaller uiCaller;
 
-	private Class<?> appClass;
-
 	@Override
 	public void start(Future<Void> startFuture) throws Exception {
 		
@@ -47,11 +45,16 @@ public class UIServiceVerticle extends AbstractVerticle{
 		ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
 		scanner.addIncludeFilter(new AnnotationTypeFilter(UIService.class));
 
-		for (BeanDefinition bd : scanner.findCandidateComponents(appClass.getPackage().getName())) {
+		for (BeanDefinition bd : scanner.findCandidateComponents(appConfig.getAppClass().getPackage().getName())) {
 
 			try {
 				Class<?> classService = Class.forName(bd.getBeanClassName());
-
+				
+				//@UIService value
+				UIService uiServiceAnnotation = classService.getAnnotation(UIService.class);
+				String uiServiceAnnotationValue = uiServiceAnnotation.value();
+				String uiServiceClass =	((uiServiceAnnotationValue.equals(""))?classService.getSimpleName():uiServiceAnnotationValue);
+						
 				// processing annotations for class
 				Object serviceObject = applicationContext.getBean(classService);
 
@@ -65,8 +68,8 @@ public class UIServiceVerticle extends AbstractVerticle{
 						UIServiceFunction serviceFunctionAnnotation = (UIServiceFunction) serviceFunctionMethodAnnotation;
 
 						//listener address format -> ui.{appName}.{methodName}
-						String listenerAddressAnnotation = serviceFunctionAnnotation.listenerAddress();
-						String address = "ui." + appConfig.getAppName() + "." + ((listenerAddressAnnotation.equals(""))?method.getName():listenerAddressAnnotation);
+						String uiServiceFunctionAnnotationValue = serviceFunctionAnnotation.value();
+						String address = "ui." + appConfig.getAppName() + "." + uiServiceClass + "." + ((uiServiceFunctionAnnotationValue.equals(""))?method.getName():uiServiceFunctionAnnotationValue);
 						int delay = serviceFunctionAnnotation.delay();
 
 						if(registerService(address))
@@ -122,8 +125,5 @@ public class UIServiceVerticle extends AbstractVerticle{
 		return hazelCastContext.addUIService(uiService);
 	}
 
-	public void setAppClass(Class<?> appClass) {
-		this.appClass = appClass;
-	}
 
 }
