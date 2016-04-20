@@ -35,6 +35,8 @@ import com.lovi.puppy.exceptions.message.ErrorMessage;
 import com.lovi.puppy.future.HttpResponseResult;
 import com.lovi.puppy.future.handler.HttpResponseHandler;
 import com.lovi.puppy.web.Session;
+import com.lovi.puppy.web.impl.SessionImpl;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.MultiMap;
@@ -445,7 +447,7 @@ public class ServerVerticle extends AbstractVerticle {
 				else if (paramaterType.equals(Session.class.getName())) {
 					// check WebSession type parameter
 					io.vertx.ext.web.Session session = routingContext.session();
-					Session customSession = new Session(session);
+					Session customSession = new SessionImpl(session);
 					inputParms[paramterCount++] = customSession;
 				}
 				
