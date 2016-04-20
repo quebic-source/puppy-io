@@ -6,7 +6,6 @@ import java.lang.reflect.Parameter;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import org.springframework.expression.spel.SpelParserConfiguration;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Component;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lovi.puppy.annotation.Controller;
 import com.lovi.puppy.annotation.ModelAttribute;
@@ -36,11 +34,11 @@ import com.lovi.puppy.exceptions.RequestProcessingException;
 import com.lovi.puppy.exceptions.message.ErrorMessage;
 import com.lovi.puppy.future.HttpResponseResult;
 import com.lovi.puppy.future.handler.HttpResponseHandler;
+import com.lovi.puppy.template.CustomThymeleafTemplateEngine;
 import com.lovi.puppy.web.Session;
 import com.lovi.puppy.web.ViewAttribute;
 import com.lovi.puppy.web.impl.SessionImpl;
 import com.lovi.puppy.web.impl.ViewAttributeImpl;
-
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.MultiMap;
@@ -59,7 +57,6 @@ import io.vertx.ext.web.handler.sockjs.BridgeOptions;
 import io.vertx.ext.web.handler.sockjs.PermittedOptions;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 import io.vertx.ext.web.templ.TemplateEngine;
-import io.vertx.ext.web.templ.ThymeleafTemplateEngine;
 
 @Component
 public class ServerVerticle extends AbstractVerticle {
@@ -88,7 +85,7 @@ public class ServerVerticle extends AbstractVerticle {
 		router.get("/" + appConfig.getAppName() +"/static/*").handler(StaticHandler.create(resourcesFolder + "/static").setCachingEnabled(false));
 		
 		//templates
-		TemplateEngine engine = ThymeleafTemplateEngine.create();
+		TemplateEngine engine = CustomThymeleafTemplateEngine.create();
 		TemplateHandler htmlHandler = TemplateHandler.create(engine,resourcesFolder + "/templates","text/html;charset=utf-8");
 		router.get("/" + appConfig.getAppName() + "/templates/*").handler(htmlHandler)
 		.failureHandler(failureHandler->{
