@@ -100,6 +100,29 @@ public class UserController {
 ####FailResult 
 * ```FailResult``` is used to catch the failure within the service method call which is called by ```ServiceCaller```
 
+####ViewAttribute
+```java
+@Controller
+public class IndexController {
+
+	@Autowired
+	private ServiceCaller serviceCaller;
+	
+	@RequestMapping
+	public void loadIndexView(Session session, ViewAttribute viewAttribute, HttpResponseResult responseResult){
+		User loggedUser = session.get("user", User.class);
+		if(loggedUser != null){
+			viewAttribute.put("loggedUser", loggedUser);
+			responseResult.complete("users-dashboard");
+		}else
+			responseResult.complete("index");
+	}
+	....
+}
+```
+* Use ```com.lovi.puppy.web.ViewAttribute```
+* ViewAttribute is used to maintain any data that you want to share between handlers or share between views
+
 ##Service App
 ```java
 @Service("userService")
