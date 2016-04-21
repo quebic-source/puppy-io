@@ -82,12 +82,12 @@ public class ServerVerticle extends AbstractVerticle {
 		router.route("/*").handler(BodyHandler.create());// this is for access json request body
 		
 		//static resources
-		router.get("/" + appConfig.getAppName() +"/static/*").handler(StaticHandler.create(resourcesFolder + "/static").setCachingEnabled(false));
+		router.get("/static/*").handler(StaticHandler.create(resourcesFolder + "/static").setCachingEnabled(false));
 		
 		//templates
 		TemplateEngine engine = CustomThymeleafTemplateEngine.create();
 		TemplateHandler htmlHandler = TemplateHandler.create(engine,resourcesFolder + "/templates","text/html;charset=utf-8");
-		router.get("/" + appConfig.getAppName() + "/templates/*").handler(htmlHandler)
+		router.get("/templates/*").handler(htmlHandler)
 		.failureHandler(failureHandler->{
 			prepareFailureResponse(failureHandler, 404, "unable to found template - " + failureHandler.request().path());
 		});
@@ -132,7 +132,7 @@ public class ServerVerticle extends AbstractVerticle {
 					if (requestMappingMethodAnnotation != null) {
 						RequestMapping requestMappingAnnotation = (RequestMapping) requestMappingMethodAnnotation;
 
-						String requestUrl = getAppNameBaseUrl() + controllerBaseUrl + requestMappingAnnotation.value();
+						String requestUrl = controllerBaseUrl + requestMappingAnnotation.value();
 						String consumes = requestMappingAnnotation.consumes();
 						String produce = requestMappingAnnotation.produce();
 						
@@ -295,10 +295,10 @@ public class ServerVerticle extends AbstractVerticle {
 					    	Matcher m = r.matcher(path);
 					    	
 							if (m.find()) {
-								path = path.substring(m.end());
-								routingContext.reroute(HttpMethod.GET, "/" + appConfig.getAppName() + path);
+								//path = path.substring(m.end());
+								routingContext.reroute(HttpMethod.GET, path);
 							}else{
-								routingContext.reroute(HttpMethod.GET, "/" + appConfig.getAppName() + "/templates/" + (String) value + ".html");
+								routingContext.reroute(HttpMethod.GET, "/templates/" + (String) value + ".html");
 							}
 							
 						}else{
@@ -571,10 +571,6 @@ public class ServerVerticle extends AbstractVerticle {
 	
 	public void setSessionHandler(SessionHandler sessionHandler) {
 		this.sessionHandler = sessionHandler;
-	}
-
-	private String getAppNameBaseUrl(){
-		return "/" + appConfig.getAppName();
 	}
 
 	public int getPort() {

@@ -13,7 +13,7 @@ import com.lovi.puppy.annotation.enums.HttpMethod;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequestMapping {
 
-	String value() default "";
+	String value() default "/";
 	HttpMethod method() default HttpMethod.GET;
 	String consumes() default "";
 	String produce() default "";
