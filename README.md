@@ -250,7 +250,7 @@ public class UserService {
 var app = angular.module("myApp", ['puppy-io']);
 	   		
 app.config(function(WebServerProvider){
-	WebServerProvider.config('user-mgr',81);
+	WebServerProvider.config('user-mgr',9000);
 });
 ```
 * [puppy-io-angular.js](https://github.com/loviworld/puppy-io-samples/blob/master/src/main/resources/web/static/js/puppy-io-angular.js)
