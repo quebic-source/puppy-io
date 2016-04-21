@@ -290,9 +290,10 @@ public class ServerVerticle extends AbstractVerticle {
 							String path = (String) value;
 							
 							//check for redirect to another route
-							String pattern = "/\\.*";
+							String pattern = "^/";
 					    	Pattern r = Pattern.compile(pattern);
 					    	Matcher m = r.matcher(path);
+					    	
 							if (m.find()) {
 								path = path.substring(m.end());
 								routingContext.reroute(HttpMethod.GET, "/" + appConfig.getAppName() + path);
@@ -583,4 +584,16 @@ public class ServerVerticle extends AbstractVerticle {
 	public void setPort(int port) {
 		this.port = port;
 	}
+	
+	/*private void fixURL(RoutingContext routingContext){
+		String string = routingContext.request().path();
+    	String pattern = "/$";
+    	Pattern r = Pattern.compile(pattern);
+    	Matcher m = r.matcher(string);
+    	
+		if (m.find()) {
+			System.out.println(string.substring(0,m.start()));
+		}else
+			System.err.println("err");
+	}*/
 }
