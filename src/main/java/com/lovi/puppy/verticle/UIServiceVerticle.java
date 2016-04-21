@@ -67,9 +67,9 @@ public class UIServiceVerticle extends AbstractVerticle{
 
 						UIServiceFunction serviceFunctionAnnotation = (UIServiceFunction) serviceFunctionMethodAnnotation;
 
-						//listener address format -> ui.{appName}.{methodName}
+						//listener address format -> {appName}.{serviceClassName}.{methodName}
 						String uiServiceFunctionAnnotationValue = serviceFunctionAnnotation.value();
-						String address = "ui." + appConfig.getAppName() + "." + uiServiceClass + "." + ((uiServiceFunctionAnnotationValue.equals(""))?method.getName():uiServiceFunctionAnnotationValue);
+						String address = appConfig.getAppName() + "." + uiServiceClass + "." + ((uiServiceFunctionAnnotationValue.equals(""))?method.getName():uiServiceFunctionAnnotationValue);
 						int delay = serviceFunctionAnnotation.delay();
 
 						if(registerService(address))

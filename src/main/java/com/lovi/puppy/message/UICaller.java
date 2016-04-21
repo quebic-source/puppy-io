@@ -5,7 +5,7 @@ import com.lovi.puppy.exceptions.UICallerException;
 public interface UICaller {
 	
 	/**
-	 * listener address format -> ui.{appName}.{serviceClassName}.{methodName}
+	 * listener address format -> {appName}.{serviceClassName}.{methodName}
 	 * @param address
 	 * @param message
 	 * @throws ServiceCallerException
