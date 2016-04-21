@@ -17,6 +17,7 @@ puppy-io is a java framework.It provides easy way to develop reactive microservi
  * Download the [user-manager](https://github.com/loviworld/puppy-io-samples) application from GitHub
  * Build the application using **mvn package**
  * Run the application using **java -jar target\user-manager-0.0.1-SNAPSHOT.jar**
+ * Consume web app from **localhost:9000**
 
 ##Starting the application
 ```java
