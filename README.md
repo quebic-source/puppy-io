@@ -13,6 +13,14 @@ puppy-io is a java framework.It provides easy way to develop reactive microservi
  * Download the [puppy-io](https://github.com/loviworld/puppy-io) from GitHub
  * Install puppy-io dependency using **mvn install**
  
+```xml
+	<dependency>
+		<groupId>com.lovi.puppy</groupId>
+		<artifactId>puppy-io</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+```
+ 
 ### Sample application
  * Download the [user-manager](https://github.com/loviworld/puppy-io-samples) application from GitHub
  * Build the application using **mvn package**
