@@ -87,7 +87,10 @@ public class UserController {
 ####HttpResponseResult
 * ```HttpResponseResult.complete(Object value)``` set response value
 * ```HttpResponseResult.complete(Object value, int statusCode)``` set response value with statusCode
-* If you put @ResponseBody annonation with the method, framework return object value as response. otherwise response is redirect to  template or another route.
+* If you put ```@ResponseBody``` annonation with the method, then return the value of object as response. otherwise response is redirect to  a template or another route.
+* ```HttpResponseResult.complete("{template_name}")```
+* ```HttpResponseResult.complete("/{new_route}")```
+* puppy-io use Thymeleaf template engine for generate template 
 
 ####ServiceCaller
 * ServiceCaller is used to call service method
