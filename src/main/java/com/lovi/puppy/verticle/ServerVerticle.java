@@ -558,7 +558,7 @@ public class ServerVerticle extends AbstractVerticle {
 	private SockJSHandler socketJSRegister() {
 		SockJSHandler sockJSHandler = SockJSHandler.create(vertx);
 		BridgeOptions options = new BridgeOptions();
-		//[appName].[servliceClass].[method]
+		//[appName].[address]
 		options.addOutboundPermitted(new PermittedOptions().setAddressRegex(appConfig.getAppName() + "..*"));
 		sockJSHandler.bridge(options, event -> {
 			if (event.type() == BridgeEventType.SOCKET_CREATED) {
