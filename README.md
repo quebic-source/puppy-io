@@ -88,9 +88,9 @@ public class UserController {
 * ```HttpResponseResult.complete(Object value)``` set response value
 * ```HttpResponseResult.complete(Object value, int statusCode)``` set response value with statusCode
 * If you put ```@ResponseBody``` annonation with the method, then return the value of object as response. otherwise response is redirect to  a template or another route.
-* ```HttpResponseResult.complete("{template_name}")```
-* ```HttpResponseResult.complete("/{new_route}")```
-* puppy-io use Thymeleaf template engine for generate template 
+* ```HttpResponseResult.complete("{template}")```
+* ```HttpResponseResult.complete("/{route}")```
+* puppy-io use Thymeleaf template engine for generate templates
 
 ####ServiceCaller
 * ServiceCaller is used to call service method
@@ -126,6 +126,36 @@ public class IndexController {
 ```
 * Use ```com.lovi.puppy.web.ViewAttribute```
 * ViewAttribute is used to maintain any data that you want to share between handlers or share between views
+
+####ViewAttribute
+```java
+@Controller
+public class IndexController {
+	@RequestMapping(method=HttpMethod.POST)
+	public void signIn(@RequestParm("userId") String userId, @RequestParm("password") String password,
+					Session session,
+						HttpResponseResult responseResult) throws ServiceCallerException{
+		
+		Result<User> result = Result.create();
+		FailResult failResult = FailResult.create();
+		
+		serviceCaller.call("UserService.findByUserIdAndPassword", result, userId, password);
+		
+		result.process(user->{
+			if(user != null)
+				session.put("user", user);
+			
+			responseResult.complete("/");
+			
+		}, failResult);
+		
+		failResult.setHandler(fail->{
+			responseResult.complete("/");
+		});
+		
+	}
+}
+```
 
 ##Service App
 ```java
