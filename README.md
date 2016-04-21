@@ -90,7 +90,7 @@ public class UserController {
 * If you put ```@ResponseBody``` annonation with the method, then return the value of object as response. otherwise response is redirect to  a template or another route.
 * ```HttpResponseResult.complete("{template}")```
 * ```HttpResponseResult.complete("/{route}")```
-* puppy-io use Thymeleaf template engine for generate templates
+* puppy-io use Thymeleaf template engine for genarating templates
 
 ####ServiceCaller
 * ServiceCaller is used to call service method
@@ -125,12 +125,16 @@ public class IndexController {
 }
 ```
 * Use ```com.lovi.puppy.web.ViewAttribute```
+* ```viewAttribute.put("loggedUser", loggedUser);```
+* ```viewAttribute.get("loggedUser", User.class);```
+* In the template ```${loggedUser.userId}```
 * ViewAttribute is used to maintain any data that you want to share between handlers or share between views
 
-####ViewAttribute
+####Session
 ```java
 @Controller
 public class IndexController {
+
 	@RequestMapping(method=HttpMethod.POST)
 	public void signIn(@RequestParm("userId") String userId, @RequestParm("password") String password,
 					Session session,
@@ -156,6 +160,9 @@ public class IndexController {
 	}
 }
 ```
+* Use ```com.lovi.puppy.web.Session```
+* ```session.put("user", user);```
+* ```User loggedUser = session.get("user", User.class);```
 
 ##Service App
 ```java
