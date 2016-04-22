@@ -295,11 +295,19 @@ public class ServerVerticle extends AbstractVerticle {
 					    	Matcher m = r.matcher(path);
 					    	
 							if (m.find()) {
-								//path = path.substring(m.end());
-								routingContext.reroute(HttpMethod.GET, path);
-							}else{
+								HttpServerResponse response = routingContext.response();
+								/*	
+								 * 	301 Moved Permanently
+								 * 	When automatically redirecting a POST request after
+      							 *	receiving a 301 status code, some existing HTTP/1.0 user agents
+      							 *	will erroneously change it into a GET request.
+								 */
+								response.setStatusCode(301);
+								response.putHeader("Location", path);
+								response.end();
+							}else
 								routingContext.reroute(HttpMethod.GET, "/templates/" + (String) value + ".html");
-							}
+
 							
 						}else{
 							try {
@@ -581,15 +589,4 @@ public class ServerVerticle extends AbstractVerticle {
 		this.port = port;
 	}
 	
-	/*private void fixURL(RoutingContext routingContext){
-		String string = routingContext.request().path();
-    	String pattern = "/$";
-    	Pattern r = Pattern.compile(pattern);
-    	Matcher m = r.matcher(string);
-    	
-		if (m.find()) {
-			System.out.println(string.substring(0,m.start()));
-		}else
-			System.err.println("err");
-	}*/
 }
