@@ -11,6 +11,14 @@ import java.lang.annotation.Target;
  * </br>
  * </br>
  * value => The name of the request parameter to bind to
+ * </br>
+ * </br>
+ * defaultValue => The default value for request parameter to bind to
+ * </br>
+ * </br>
+ * required => Whether the parameter is required.Defaults to true, leading to an exception being thrown if the parameter is missing in the request. Switch this to false if you prefer a null value if the parameter is not present in the request
+ * </br>
+ * </br>
  * @author Tharanga Thennakoon
  *
  */
@@ -19,4 +27,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequestParm {
 	String value();
+	String defaultValue() default "";
+	boolean required() default true;
 }

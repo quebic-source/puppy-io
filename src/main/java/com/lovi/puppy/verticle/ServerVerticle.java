@@ -354,15 +354,24 @@ public class ServerVerticle extends AbstractVerticle {
 						
 						RequestParm requestParm = (RequestParm) requestParmAnnonation;
 						String requestParmValue = requestParm.value();
-
+						String requestParmDefaultValue = requestParm.defaultValue();
+						boolean requestParmRequired = requestParm.required();
+						
 						if (requestParmValue.equals(""))
 							throw new InternalServerException(ErrorMessage.REQUEST_PARAM_ANNOTATION_VALUE_CAN_NOT_BE_EMPTY.getMessage());
 						else {
 							String requestValue = httpServerRequest.getParam(requestParmValue);
 
-							if (requestValue == null)
-								throw new RequestProcessingException(ErrorMessage.REQUEST_PARAM_NOT_FOUND.getMessage() + requestParmValue);
-
+							if (requestValue == null){
+								if(requestParmRequired && requestParmDefaultValue.equals(""))
+									throw new RequestProcessingException(ErrorMessage.REQUEST_PARAM_NOT_FOUND.getMessage() + requestParmValue);
+								else{
+									if(requestParmDefaultValue.equals(""))
+										requestValue = null;
+									else
+										requestValue = requestParmDefaultValue;
+								}
+							}
 							try{
 								if (paramaterType.equals(Integer.class.getName())) {
 									inputParms[paramterCount++] = Integer.parseInt(requestValue);

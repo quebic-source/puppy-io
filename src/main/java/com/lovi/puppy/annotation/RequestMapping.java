@@ -12,10 +12,10 @@ import com.lovi.puppy.annotation.enums.HttpMethod;
  * Annotation for mapping web requests onto specific handler classes and/or handler methods
  * </br>
  * </br>
- * value => the path mapping URIs.(e.g. "/testPath")
+ * value => the path mapping URIs.(e.g. "/testPath" ,  "/testPath/:pathVariable"  )
  * </br>
  * </br>
- * method => The HTTP request methods to map to, narrowing the primary mapping. default HttpMethod.GET (HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE, HttpMethod.PATCH)
+ * method => The HTTP request methods to map (GET, POST, PUT, DELETE, PATCH). default GET. 
  * </br>
  * </br>
  * consumes => The consumable media types of the mapped request.
