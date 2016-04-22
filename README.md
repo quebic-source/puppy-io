@@ -271,6 +271,7 @@ serviceListener.onopen(function() {
 ###Technologies used in puppy-io
 * Vert.x
 * Spring Boot
+* Hazelcast
 
 ###Authors
 * Tharanga Thennakoon - tharanganilupul@gmail.com 
