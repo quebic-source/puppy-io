@@ -87,8 +87,7 @@ public class ServerVerticle extends AbstractVerticle {
 		//templates
 		TemplateEngine engine = CustomThymeleafTemplateEngine.create();
 		TemplateHandler htmlHandler = TemplateHandler.create(engine,resourcesFolder + "/templates","text/html;charset=utf-8");
-		router.get("/templates/*").handler(htmlHandler)
-		.failureHandler(failureHandler->{
+		router.get("/templates/*").handler(htmlHandler).failureHandler(failureHandler->{
 			prepareFailureResponse(failureHandler, 404, "unable to found template - " + failureHandler.request().path());
 		});
 		
