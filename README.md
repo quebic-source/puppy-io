@@ -1,5 +1,5 @@
 # puppy-io
-puppy-io is a java framework.It provides easy way to develop reactive microservice applications on the jvm
+puppy-io is a java framework.It provides easy way for developing reactive microservice systems on the jvm.
 
 ![puppy-io](https://github.com/loviworld/puppy-io/blob/master/puppy-io.png)
 
