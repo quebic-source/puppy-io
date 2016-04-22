@@ -102,10 +102,8 @@ public class ServerVerticle extends AbstractVerticle {
 		
 		//process @Controller 
 		ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
-
 		scanner.addIncludeFilter(new AnnotationTypeFilter(Controller.class));
 
-		
 		for (BeanDefinition bd : scanner.findCandidateComponents(appConfig.getAppClass().getPackage().getName())) {
 			try {
 				Class<?> classController = Class.forName(bd.getBeanClassName());
