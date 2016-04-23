@@ -8,7 +8,7 @@ import com.lovi.puppy.message.factory.FailResultFactory;
 import com.lovi.puppy.message.handler.ResultHandler;
 
 /**
- * The class is used to catch the failure within the service method call which is called by ServiceCaller.
+ * The class is used to handle the failure occur within the service method execution which is called by ServiceCaller.
  * @see ServiceCaller
  * @see Result
  * @author Tharanga Thennakoon
@@ -16,13 +16,17 @@ import com.lovi.puppy.message.handler.ResultHandler;
  */
 public interface FailResult {
 
+	/**
+	 * Create new instance from FailResult class
+	 * @return
+	 */
 	static FailResult create() {
 		return factory.create();
 	}
 	
 	/**
-	 * Set a handler for the FailResult. When failure occur within ServiceCaller then the handler will execute. 
-	 * @param Handler the Handler that will be called with the failure.
+	 * Set a handler for the FailResult.
+	 * @param handler The Handler that will be called after the failure occur.
 	 */
 	default void setHandler(ResultHandler<Throwable> handler){
 		

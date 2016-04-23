@@ -9,14 +9,30 @@ import com.lovi.puppy.exceptions.message.ErrorMessage;
 import com.lovi.puppy.message.factory.ResultFactory;
 import com.lovi.puppy.message.handler.ResultHandler;
 
+/**
+ * The class is used to handle the result return from the service method which is called by ServiceCaller.
+ * @author Tharanga Thennakoon
+ * @see ServiceCaller
+ * @see FailResult
+ * @param <T> The data type of the return value of the service method.
+ */
 public interface Result<T> {
 
+	/**
+	 * Create new instance from Result class
+	 * @return
+	 */
 	static <T> Result<T> create() {
 		return factory.<T> create();
 	}
 
 	Handler<AsyncResult<Message<MessageBody>>> getHandler();
 
+	/**
+	 * Set a handler for processing the result.
+	 * @param handler The Handler that will be called after the failure occur.
+	 * @param failResult The FailResult for handle failure.
+	 */
 	default void process(ResultHandler<T> handler, FailResult failResult) {
 		
 		getVerxFuture().compose(new Handler<Message<MessageBody>>() {
@@ -35,6 +51,10 @@ public interface Result<T> {
 		}, failResult.getVerxFuture());
 	}
 	
+	/**
+	 * Set a handler for processing the result.
+	 * @param handler The Handler that will be called after the failure occur.
+	 */
 	default void process(ResultHandler<T> handler) {
 		
 		getVerxFuture().compose(new Handler<Message<MessageBody>>() {
