@@ -5,7 +5,7 @@ import com.lovi.puppy.exceptions.ServiceCallerException;
 /**
  * ServiceCaller is used to call service method.
  * @author Tharanga Thennakoon
- *
+ * @see Result
  */
 public interface ServiceCaller {
 	
