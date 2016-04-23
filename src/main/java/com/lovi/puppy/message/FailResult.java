@@ -17,7 +17,7 @@ import com.lovi.puppy.message.handler.ResultHandler;
 public interface FailResult {
 
 	/**
-	 * Create new instance from FailResult class
+	 * Create new instance from FailResult class.
 	 * @return
 	 */
 	static FailResult create() {
