@@ -8,7 +8,7 @@ import com.lovi.puppy.message.factory.FailResultFactory;
 import com.lovi.puppy.message.handler.ResultHandler;
 
 /**
- * The class is used to handle the failure occur within the service method execution which is called by ServiceCaller.
+ * FailResult is used to handle the failure occur within the service method execution which is called by ServiceCaller.
  * @see ServiceCaller
  * @see Result
  * @author Tharanga Thennakoon

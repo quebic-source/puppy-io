@@ -10,7 +10,7 @@ import com.lovi.puppy.message.factory.ResultFactory;
 import com.lovi.puppy.message.handler.ResultHandler;
 
 /**
- * The class is used to handle the result return from the service method which is called by ServiceCaller.
+ * Result is used to handle the result return from the service method which is called by ServiceCaller.
  * @author Tharanga Thennakoon
  * @see ServiceCaller
  * @see FailResult
