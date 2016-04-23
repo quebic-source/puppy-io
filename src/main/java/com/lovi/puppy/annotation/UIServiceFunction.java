@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
  * value => Name of the UI Service Function. If you didn't provide a name for the UI Service Function then name of the annotated method is become the UI Service Function name. 
  * </br>
  * </br>
- * delay(minute) => Indicates the UI Service Function firing rate in minutes.
+ * delay(second) => Indicates the UI Service Function firing rate in second.
  * </br>
  * </br>
  * @author Tharanga Thennakoon
@@ -25,5 +25,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UIServiceFunction {
 	String value() default "";
-	int delay();//delay - minute
+	int delay();
 }
