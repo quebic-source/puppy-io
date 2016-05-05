@@ -24,6 +24,11 @@ import com.lovi.puppy.verticle.ServerVerticle;
 import com.lovi.puppy.verticle.ServiceVerticle;
 import com.lovi.puppy.verticle.UIServiceVerticle;
 
+/**
+ * 
+ * @author Tharanga Thennakoon
+ *
+ */
 @SpringBootApplication
 class PuppyAppLauncher{
 
