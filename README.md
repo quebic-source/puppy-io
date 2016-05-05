@@ -3,7 +3,11 @@ puppy-io is a java framework.It provides easy way for developing reactive micros
 
 ![puppy-io](https://github.com/loviworld/puppy-io/blob/master/puppy-io.png)
 
+How threading works inside puppy-io
 ![puppy-io how threading works](https://github.com/loviworld/puppy-io/blob/master/puppy-io-t.png)
+
+puppy-io non blocking web server
+![puppy-io non blocking web server](https://github.com/loviworld/puppy-io/blob/master/puppy-io-nb.png)
 
 ### Prerequisities
   * JDK 1.8.X
@@ -225,7 +229,7 @@ public class UserService {
 * Method is marked as a ui service method by using ```@UIServiceFunction```
 * Fires every time a specified period of time has passed
 * listenerAddress = address of the listener
-* delay = time interval in seconds
+* delay = time interval in minutes
 
 ####UICaller
 * ```UICaller``` publish data to connected sockjs clients
