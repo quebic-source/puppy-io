@@ -14,7 +14,7 @@ import com.lovi.puppy.async.handlers.Handler;
  */
 public class AsyncExecutorImpl<T> implements AsyncExecutor<T>{
 
-	private static ExecutorService executorService = Executors.newFixedThreadPool(20);
+	private static ExecutorService executorService = Executors.newFixedThreadPool(1000);
     
     @Override
     public void run(AsyncHandler<T> handler, Handler<T> successHandler, Handler<Throwable> failureHandler) {
