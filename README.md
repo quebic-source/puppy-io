@@ -1,7 +1,7 @@
 # puppy-io
 puppy-io is a java framework.It provides easy way for developing reactive microservice systems on the jvm.
 
-puppy-io contain single thread web server and you can perform  non-blocking I/O operations withing the server. You can deploy micro services easily with  puppy-io and you can communicate with each services easily. puppy-io have inbuilt Clustering and Load-Balancing mechanism , It make sure the fault tolerance and increase the scalability of your applications.
+puppy-io contain single threaded web server and you can perform  non-blocking I/O operations within the server. You can deploy micro services easily with puppy-io and you can communicate with each services easily. puppy-io have inbuilt Clustering and Load-Balancing mechanism, it make sure the fault tolerance and increase the scalability of your applications.
 
 ![puppy-io](https://github.com/loviworld/puppy-io/blob/master/puppy-io.png)
 
